@@ -6,10 +6,18 @@ const url ="https://restcountries.com/v3.1/all";
 
 
 
-const $input = document.querySelector("#countryInput");
+const $divCuerpo = document.querySelector("#divCuerpo");
+const $lstContinente = document.querySelector("#lstContinente");
 const $btn = document.querySelector("#btnBuscar");
 
-//$btn.addEventListener("click", function)
+//----Se recorre los elementos <li> y se les agrega evento "Click"
+//----el cual renderiza el texto del continente clickeado
+$lstContinente.childNodes.forEach((e)=>{
+    e.addEventListener("click", (e)=>{
+        $divCuerpo.innerHTML = `<h1>${e.target.innerText}</h1>`
+    });
+});
+
   
         
 function getInfo(continente){
