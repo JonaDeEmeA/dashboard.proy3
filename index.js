@@ -17,8 +17,7 @@ const arrRegionAfrica = ["Middle Africa","Western Africa","Eastern Africa","Nort
 const arrRegionAmerica = ["South America","Central America","North America","Caribbean"]
 const arrRegionOceania = ["Polynesia","Melanesia","Australia and New Zealand","Micronesia"]
 
-//----Se recorre los elementos <li> y se les agrega evento "Click"
-//----el cual renderiza el texto del continente clickeado
+
 
         
 function getInfo(continente){
@@ -105,29 +104,7 @@ function getInfo(continente){
    
     
     
-    // getInfo("Eastern Europe");
-    // getInfo("Northern Europe");
-    // getInfo("Western Europe");
 
-    // getInfo("Eastern Asia");
-    // getInfo("Southern Asia");
-    // getInfo("Central Asia");
-    // getInfo("Western Asia");
-    // getInfo("South-Eastern Asia");
-    
-
-    // getInfo("South America");
-    // getInfo("North America");
-    // getInfo("Central America");
-
-    // getInfo("Caribbean");
-    // getInfo("Australia and New Zealand");
-    // getInfo("Melanesia");
-
-    // getInfo("Eastern Africa");
-    // getInfo("Western Africa");
-    // getInfo("Northern Africa");
-    // getInfo("Southern Africa");
 
 
 const ctx = document.querySelector("#poblacionChrt");
@@ -211,11 +188,13 @@ let myChart = new Chart(ctx, {
     });
 
     
-    
+//----Se recorre los elementos <li> y se les agrega evento "Click"
+//----el cual renderiza el texto del continente clickeado
     $lstContinente.childNodes.forEach((e)=>{
         e.addEventListener("click", (e)=>{
             $divCuerpo.innerHTML = `<h1>${e.target.innerText}</h1>`
-            
+ 
+//----Condicion para cada click en el "DropDown"
             if (e.target.innerText== arrContinente[0]) {
                 getInfo("Southern Europe");
                 myChart.data.labels= arrRegionAmerica;
