@@ -11,15 +11,8 @@ const $lstContinente = document.querySelector("#lstContinente");
 const $btn = document.querySelector("#btnBuscar");
 
 const arrContinente = ["America", "Asia", "Africa", "Europa", "Oceania"];
-const arrRegionEuropa = ["Southeast Europe","Eastern Europe","Northern Europe","Central Europe","Southern Europe","Western Europe"];
-const arrRegionAsia = ["Western Asia","Southern Asia","Central Asia","Eastern Asia","South-Eastern Asia"];
-const arrRegionAfrica = ["Middle Africa","Western Africa","Eastern Africa","Northern Africa", "Southern Africa"];
-const arrRegionAmerica = ["South America","Central America","North America","Caribbean"]
-const arrRegionOceania = ["Polynesia","Melanesia","Australia and New Zealand","Micronesia"]
 
 
-
-        
 function getInfo(continente){
 
     
@@ -72,90 +65,50 @@ function getInfo(continente){
     };
     
 
-    
-    
-    
-    /*let elArr = []
-    let testTTT = getInfo().then(res=>{
-
-        const result = fetch(url)
-       
-        const subregionAll = res.map(e=> e.subregion);
+    let lstTotalRegion = []
+    async function getListaSubRegion(paraLabel) {
+        const res = await fetch(url);
         
-        const subregionFiltrado = new Set(subregionAll);
-        return Array.from(subregionFiltrado);
+        const dataPaises = await res.json();
+        
+        const arrAllRegion = await dataPaises.map(e=> e.subregion);
+        
+        const setRegion = new Set(arrAllRegion);
+        const arrRegion= Array.from(setRegion);
+        
+        const dato = arrRegion.splice(11,1);
 
-    }).then(e => {
-
-         for (let index = 0; index < e.length; index++) {
-            elArr.push(e[index])
-              
-         }   
-    })
-    
-    testTTT.then(()=>{
-        console.log(elArr[0]);
-    })
-    
-    
-   console.log(typeof(testTTT));
-    console.log(elArr);*/
-
-   
-    
-    
+        
+        const arrAsia = arrRegion.filter(e=> e.includes("Asia"))
+        const arrAmerica = arrRegion.filter(e=> e.includes("America"))
+        const arrAfrica = arrRegion.filter(e=> e.includes("Africa"))
+        const arrEuropa = arrRegion.filter(e=> e.includes("Europe"))
+        const arrOceania = arrRegion.filter(e=> e.includes("esia"))
+        
+        
+        paraLabel.push(arrAmerica,arrAsia,arrAfrica,arrEuropa,arrOceania)
+    }
 
 
+    getListaSubRegion(lstTotalRegion)
 
-const ctx = document.querySelector("#poblacionChrt");
  
-/*
-let myChart = function (label, data) {
 
-     new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: label,
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+
 
     
-    
-}*/
+
+        
 
 
+
+function elChart (arrLabel) {
+
+    const ctx = document.querySelector("#poblacionChrt");
 let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [],
+            labels: arrLabel,
             datasets: [{
                 label: '# of Votes',
                 data: [12, 19, 3, 5, 2, 3],
@@ -186,32 +139,35 @@ let myChart = new Chart(ctx, {
             }
         }
     });
+    
+}
+
 
     
 //----Se recorre los elementos <li> y se les agrega evento "Click"
 //----el cual renderiza el texto del continente clickeado
     $lstContinente.childNodes.forEach((e)=>{
         e.addEventListener("click", (e)=>{
+
+            
             $divCuerpo.innerHTML = `<h1>${e.target.innerText}</h1>`
- 
+                        
 //----Condicion para cada click en el "DropDown"
             if (e.target.innerText== arrContinente[0]) {
-                getInfo("Southern Europe");
-                myChart.data.labels= arrRegionAmerica;
-                console.log(myChart.data.labels);
-                
-                
+                elChart(lstTotalRegion[0])
             }else if (e.target.innerText== arrContinente[1]) {
-                myChart.data.labels= arrRegionAsia;
+                elChart(lstTotalRegion[1])
             }else if (e.target.innerText== arrContinente[2]) {
-                myChart.data.labels= arrRegionAfrica;
+                elChart(lstTotalRegion[2])
             }else if (e.target.innerText== arrContinente[3]) {
-                myChart.data.labels= arrRegionEuropa;
+                elChart(lstTotalRegion[3])
             }else if (e.target.innerText== arrContinente[4]) {
-                myChart.data.labels= arrRegionOceania;
+                elChart(lstTotalRegion[4])
             }
+
+
             
-            myChart.update();
+            
         });
     });
 
