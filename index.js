@@ -75,7 +75,6 @@ function getInfo(continente){
         
         const setRegion = new Set(arrAllRegion);
         const arrRegion= Array.from(setRegion);
-        
         const dato = arrRegion.splice(11,1);
 
         
@@ -84,31 +83,83 @@ function getInfo(continente){
         const arrAfrica = arrRegion.filter(e=> e.includes("Africa"))
         const arrEuropa = arrRegion.filter(e=> e.includes("Europe"))
         const arrOceania = arrRegion.filter(e=> e.includes("esia"))
-        
-        
+        arrOceania.push("Australia and New Zealand")
         paraLabel.push(arrAmerica,arrAsia,arrAfrica,arrEuropa,arrOceania)
+        
     }
 
 
-    getListaSubRegion(lstTotalRegion)
 
- 
+    getListaSubRegion(lstTotalRegion);
 
 
+    /*let lstTotalPoblacion = []
+    async function getListaSubRegion() {
+        const res = await fetch(url);
+        
+        const dataPaises = await res.json();
+        
+        const alias = await dataPaises.filter(e=> e.subregion == lstTotalRegion[0][0]);
+        
+        console.log(alias);
+        
+        console.log(lstTotalRegion);
+        
+       
+    }
+
+    getListaSubRegion();*/
+
+   let paisesAmerica =[]
+   let paisesAsia=[]
+    async function getDatoPoblacion() {
+      const res = await fetch(url);
+        
+        const dataPaises = await res.json();
+        
+        
+        const sudAmerica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[0][0]);
+        const centAmerica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[0][1]);
+        const norAmerica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[0][2]);
+        paisesAmerica.push(sudAmerica,centAmerica,norAmerica)
+
+
+        
+        const westAsia = await dataPaises.filter(e=> {e.subregion == lstTotalRegion[1][0]});
+        const westAsiaPob = await westAsia.map(e=> {
+           return e.population;
+        });
+        console.log(westAsiaPob);
+        const southAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][1]);
+        const centAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][2]);
+        const eastAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][3]);
+        const southCentAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][4]);
+        paisesAsia.push(westAsiaPob,southAsia,centAsia,eastAsia,southCentAsia)
+        
+        //console.log(lstTotalRegion);
+        //console.log(lstTotalPoblacion);
+    };
+
+    getDatoPoblacion();
 
     
+    console.log(lstTotalRegion);
+        console.log(paisesAmerica);
+        console.log(paisesAsia);
+
+      
 
         
 
 
 
-function elChart (arrLabel) {
+
 
     const ctx = document.querySelector("#poblacionChrt");
 let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: arrLabel,
+            labels: [],
             datasets: [{
                 label: '# of Votes',
                 data: [12, 19, 3, 5, 2, 3],
@@ -140,7 +191,7 @@ let myChart = new Chart(ctx, {
         }
     });
     
-}
+
 
 
     
@@ -154,21 +205,25 @@ let myChart = new Chart(ctx, {
                         
 //----Condicion para cada click en el "DropDown"
             if (e.target.innerText== arrContinente[0]) {
-                elChart(lstTotalRegion[0])
+                //console.log(myChart.data.labels);
+                console.log(lstTotalRegion[0]);
+                myChart.data.labels = lstTotalRegion[0];
             }else if (e.target.innerText== arrContinente[1]) {
-                elChart(lstTotalRegion[1])
+                myChart.data.labels = lstTotalRegion[1];
             }else if (e.target.innerText== arrContinente[2]) {
-                elChart(lstTotalRegion[2])
+                myChart.data.labels = lstTotalRegion[2];
             }else if (e.target.innerText== arrContinente[3]) {
-                elChart(lstTotalRegion[3])
+                myChart.data.labels = lstTotalRegion[3];
             }else if (e.target.innerText== arrContinente[4]) {
-                elChart(lstTotalRegion[4])
+                myChart.data.labels = lstTotalRegion[4];
             }
 
 
             
-            
+            myChart.update(); 
         });
+
+        
     });
 
 
