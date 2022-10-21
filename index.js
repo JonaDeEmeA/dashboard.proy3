@@ -72,13 +72,13 @@ function getInfo(continente){
         const dataPaises = await res.json();
         
         const arrAllRegion = await dataPaises.map(e=> e.subregion);
-        
         const setRegion = new Set(arrAllRegion);
         const arrRegion= Array.from(setRegion);
-        const dato = arrRegion.splice(11,1);
+        arrRegion.splice(11,1);
 
         
         const arrAsia = arrRegion.filter(e=> e.includes("Asia"))
+        console.log(arrAsia);
         const arrAmerica = arrRegion.filter(e=> e.includes("America"))
         const arrAfrica = arrRegion.filter(e=> e.includes("Africa"))
         const arrEuropa = arrRegion.filter(e=> e.includes("Europe"))
@@ -88,30 +88,28 @@ function getInfo(continente){
         
     }
 
-
+    function makeArrPob(regionXContinente, paraPush) {
+        
+            const Pob = regionXContinente.map(e=> e.population);
+            const i = Pob.reduce((a, b)=>{
+            return a + b;
+                
+         });
+         paraPush.push(i)
+            
+        
+    }
 
     getListaSubRegion(lstTotalRegion);
 
+    const pobAmerica=[];
+    const pobAsia=[];
+    const pobAfrica=[];
+    const pobEuropa=[];
+    const pobOceania=[];
 
-    /*let lstTotalPoblacion = []
-    async function getListaSubRegion() {
-        const res = await fetch(url);
-        
-        const dataPaises = await res.json();
-        
-        const alias = await dataPaises.filter(e=> e.subregion == lstTotalRegion[0][0]);
-        
-        console.log(alias);
-        
-        console.log(lstTotalRegion);
-        
-       
-    }
-
-    getListaSubRegion();*/
-
-   let paisesAmerica =[]
-   let paisesAsia=[]
+   let paisesAmerica =[];
+   let paisesAsia=[];
     async function getDatoPoblacion() {
       const res = await fetch(url);
         
@@ -124,27 +122,66 @@ function getInfo(continente){
         paisesAmerica.push(sudAmerica,centAmerica,norAmerica)
 
 
-        
-        const westAsia = await dataPaises.filter(e=> {e.subregion == lstTotalRegion[1][0]});
-        const westAsiaPob = await westAsia.map(e=> {
-           return e.population;
-        });
-        console.log(westAsiaPob);
+        const westAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][0]);
         const southAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][1]);
         const centAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][2]);
         const eastAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][3]);
         const southCentAsia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[1][4]);
-        paisesAsia.push(westAsiaPob,southAsia,centAsia,eastAsia,southCentAsia)
+
+        const midAfrica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[2][0]);
+        const westAfrica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[2][1]);
+        const eastAfrica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[2][2]);
+        const northAfrica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[2][3]);
+        const southAfrica = await dataPaises.filter(e=> e.subregion == lstTotalRegion[2][4]);
+
+        const seEuropa = await dataPaises.filter(e=> e.subregion == lstTotalRegion[3][0]);
+        const eastEuropa = await dataPaises.filter(e=> e.subregion == lstTotalRegion[3][1]);
+        const northEuropa = await dataPaises.filter(e=> e.subregion == lstTotalRegion[3][2]);
+        const centEuropa = await dataPaises.filter(e=> e.subregion == lstTotalRegion[3][3]);
+        const southEuropa = await dataPaises.filter(e=> e.subregion == lstTotalRegion[3][4]);
+        const westEuropa = await dataPaises.filter(e=> e.subregion == lstTotalRegion[3][5]);
         
-        //console.log(lstTotalRegion);
-        //console.log(lstTotalPoblacion);
-    };
+        const micronesia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[4][0]);
+        const melanesia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[4][1]);
+        const polinesia = await dataPaises.filter(e=> e.subregion == lstTotalRegion[4][2]);
+        const austYNewZ = await dataPaises.filter(e=> e.subregion == lstTotalRegion[4][3]);
+        
+        makeArrPob(sudAmerica, pobAmerica);
+        makeArrPob(centAmerica, pobAmerica);
+        makeArrPob(norAmerica, pobAmerica);
+
+        makeArrPob(westAsia, pobAsia);
+        makeArrPob(southAsia, pobAsia);
+        makeArrPob(centAsia, pobAsia);
+        makeArrPob(eastAsia, pobAsia);
+        makeArrPob(southCentAsia, pobAsia);
+
+        makeArrPob(midAfrica, pobAfrica);
+        makeArrPob(westAfrica, pobAfrica);
+        makeArrPob(eastAfrica, pobAfrica);
+        makeArrPob(northAfrica, pobAfrica);
+        makeArrPob(southAfrica, pobAfrica);
+
+        makeArrPob(seEuropa, pobEuropa);
+        makeArrPob(eastEuropa, pobEuropa);
+        makeArrPob(northEuropa, pobEuropa);
+        makeArrPob(centEuropa, pobEuropa);
+        makeArrPob(southEuropa, pobEuropa);
+        makeArrPob(westEuropa, pobEuropa);
+
+        makeArrPob(micronesia, pobOceania);
+        makeArrPob(melanesia, pobOceania);
+        makeArrPob(polinesia, pobOceania);
+        makeArrPob(austYNewZ, pobOceania);
+            
+        };
 
     getDatoPoblacion();
-
+    console.log("primer");
     
     console.log(lstTotalRegion);
-        console.log(paisesAmerica);
+    console.log(pobAsia);
+    
         console.log(paisesAsia);
 
       
@@ -161,7 +198,7 @@ let myChart = new Chart(ctx, {
         data: {
             labels: [],
             datasets: [{
-                label: '# of Votes',
+                label: 'MM de habitantes',
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -205,17 +242,20 @@ let myChart = new Chart(ctx, {
                         
 //----Condicion para cada click en el "DropDown"
             if (e.target.innerText== arrContinente[0]) {
-                //console.log(myChart.data.labels);
-                console.log(lstTotalRegion[0]);
                 myChart.data.labels = lstTotalRegion[0];
+                myChart.data.datasets[0].data = pobAmerica;
             }else if (e.target.innerText== arrContinente[1]) {
                 myChart.data.labels = lstTotalRegion[1];
+                myChart.data.datasets[0].data = pobAsia;
             }else if (e.target.innerText== arrContinente[2]) {
                 myChart.data.labels = lstTotalRegion[2];
+                myChart.data.datasets[0].data = pobAfrica;
             }else if (e.target.innerText== arrContinente[3]) {
                 myChart.data.labels = lstTotalRegion[3];
+                myChart.data.datasets[0].data = pobEuropa;
             }else if (e.target.innerText== arrContinente[4]) {
                 myChart.data.labels = lstTotalRegion[4];
+                myChart.data.datasets[0].data = pobOceania;
             }
 
 
