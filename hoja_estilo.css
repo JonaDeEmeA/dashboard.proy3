@@ -4,16 +4,10 @@ body{
    
     
 }
-/* .contenedor_dat{
-    display: flex;
-    flex-direction:row;
-    background-color: white;
-    flex-wrap:wrap;
-    justify-content: space-around;
-} */
+
   .grafico{
-    width: 70vw;
-    height: 55vh;
+    width: 60vw;
+    height: 80vh;
     background-color: white;
 }  
 
@@ -42,24 +36,24 @@ body{
     justify-content: space-around;
 }
 
-section{
+/* section{
     height: 100vh;
-}
+} */
 
 
 
- @media only screen and (max-width: 800px) {
+ @media only screen and (max-width: 500px) {
     .grafico{
         width: 80vw;
-        height: 50vh;
+        height: 60vh;
     }  
 } 
 
-@media only screen and (max-height: 800px) {
+/* @media only screen and (max-height: 800px) {
     .grafico{
         width: 55vw;
         height: 45vh;
     }  
-} 
+}  */
 
 
