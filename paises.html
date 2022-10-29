@@ -9,9 +9,9 @@
     <title>Continentes</title>
     <link rel="stylesheet" href="hoja_estilo.css">
 </head>
-<body >
-  <header >
+<body>
 
+  <header >
     <nav class="container-fluid ps-5 pe-5 navbar navbar-expand-lg text-bg-dark">
       <div class="container-fluid">
       
@@ -39,55 +39,47 @@
   </div>
  </header>
  <section>
-    <div class="container d-flex justify-content-center">
-        <div class="mb-3 row col-6 mt-5 display-4 ">
-            <label for="formGroupExampleInput" class="form-label text-center">Población Mundial</label>
-            
-            <div class="dropdown  text-center" >
-                <button class="btn btn-dark btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Continente
-                </button>
-                <ul class="dropdown-menu" id="lstContinente">
-                  <li><a class="dropdown-item" id="btnAmerica" href="#">America</a></li>
-                  <li><a class="dropdown-item" href="#">Asia</a></li>
-                  <li><a class="dropdown-item" href="#">Africa</a></li>
-                  <li><a class="dropdown-item" href="#">Europa</a></li>
-                  <li><a class="dropdown-item" href="#">Oceania</a></li>
-                </ul>
-              </div>
-
-          </div> 
-    </div>
-
-    <div >
-
-        <div class="container">
-              <div class="container text-center" id="divCuerpo">
-                  <p>..........</p>
-              </div>
-
+  <div class="container d-flex justify-content-center">
+    <div class="mb-3 row col-4 mt-5 display-4 ">
+        <label for="formGroupExampleInput" class="form-label text-center">Información de País</label>
+        
+        <div class="dropdown  text-center" >
+            <button class="btn btn-dark btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Selec.Pais
+            </button>
+            <ul class="dropdown-menu" id="lstPaises">
               
-                
+            </ul>
         </div>
 
-        <div class=" grafico container d-flex align-content-center justify-content-center">
-          <canvas  id="poblacionChrt" ></canvas>  
-        </div>
+      </div>
   </div>
-  </section>
-  
-    <footer class="container-fluid  text-bg-secondary p-3 text-center">
-      <div class="direcciones">
-          <h5>Desarrollado por: Jonathan Morales y Erbin Velásquez - UDD</h5>
-       </div>
-   </footer>
+  <div class="contenedor_pais">
 
+    <div class="detallePais">
+          <div class="container text-center" id="poblacionPais">
+              <p>..........</p>
+          </div>
+          <div class="containerPais">
+            <div class="nombrePais" id="nombre_pais"></div>
+          
+          </div>
+    </div>
+</div>
+
+  </section>
+
+  <footer class="container-fluid  text-bg-secondary p-3 text-center">
+    <div class="direcciones">
+        <h5>Desarrollado por: Jonathan Morales y Erbin Velásquez - UDD</h5>
+     </div>
+ </footer>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" ></script>
-    <script src="./index.js"></script>
+   <script src="./paises.js"></script> 
    <!-- <script src="./sumaConti.js"></script> -->
   </body>
 </html>

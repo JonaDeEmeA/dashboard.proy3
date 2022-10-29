@@ -1,0 +1,58 @@
+
+body{
+    background-color: rgb(255, 255, 255);
+   
+    
+}
+/* .contenedor_dat{
+    display: flex;
+    flex-direction:row;
+    background-color: white;
+    flex-wrap:wrap;
+    justify-content: space-around;
+} */
+  .grafico{
+    width: 70vw;
+    height: 55vh;
+    background-color: white;
+}  
+
+.titulo_paises{
+    display: flex;
+    flex-direction:row;
+    background-color: rgb(241, 228, 228);
+    flex-wrap:wrap;
+    justify-content: center;
+
+}
+
+.resumen{
+    width: 500px;
+    background-color: white;
+}
+.nombrePais{
+    width: 200px;
+    background-color: rgb(247, 201, 201);
+}
+.contenedor_fot{
+    display: flex;
+    flex-direction:row;
+    background-color: rgb(223, 213, 201);
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+
+section{
+    height: 100vh;
+}
+
+
+
+ @media only screen and (max-width: 800px) {
+    .grafico{
+        width: 80vw;
+        height: 50vh;
+    }  
+}  
+
+
