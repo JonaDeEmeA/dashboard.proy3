@@ -5,4 +5,4 @@
 El repositorio GitHub es:
 ### 
 
-## El proyecto muestra un grafico de cada continente indicando su poblacion por subregion del continente
+## El proyecto muestra un gráfico de cada continente indicando su población por subregión del continente
