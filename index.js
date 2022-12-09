@@ -22,19 +22,24 @@ const arrContinente = ["America", "Asia", "Africa", "Europa", "Oceania"];
         const arrAllRegion = await dataPaises.map(e=> e.subregion);
         const setRegion = new Set(arrAllRegion);
         const arrRegion= Array.from(setRegion);
-        arrRegion.splice(23,1);
-        //console.log(arrRegion);
+        const undefinedIndex = arrRegion.indexOf(undefined);
+        arrRegion.splice(undefinedIndex,1);
+        console.log(arrRegion);
 
         
-        const arrAsia = arrRegion.filter(e=> e.includes("Asia"))
+        const arrAsia = arrRegion.filter(e=> e.includes("Asia") )
         const arrAmerica = arrRegion.filter(e=> e.includes("America"))
         const arrAfrica = arrRegion.filter(e=> e.includes("Africa"))
         const arrEuropa = arrRegion.filter(e=> e.includes("Europe"))
         const arrOceania = arrRegion.filter(e=> e.includes("esia"))
         arrOceania.push("Australia and New Zealand")
         paraLabel.push(arrAmerica,arrAsia,arrAfrica,arrEuropa,arrOceania)
+
+        
         
     }
+
+    
 
     function makeArrPob(regionXContinente, paraPush) {
         

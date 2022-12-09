@@ -36,10 +36,6 @@ body{
     justify-content: space-around;
 }
 
-/* section{
-    height: 100vh;
-} */
-
 
 
  @media only screen and (max-width: 500px) {
@@ -49,11 +45,6 @@ body{
     }  
 } 
 
-/* @media only screen and (max-height: 800px) {
-    .grafico{
-        width: 55vw;
-        height: 45vh;
-    }  
-}  */
+
 
 
